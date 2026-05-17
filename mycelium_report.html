@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mycelium-Based Composites — Strain Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0e0f0c;
+  --paper:#f6f3ee;
+  --paper2:#efeae2;
+  --paper3:#e5dfd4;
+  --moss:#2d5016;
+  --moss2:#3d6e20;
+  --moss3:#5a9a32;
+  --sage:#8ab87a;
+  --sage2:#b4cc9e;
+  --sage3:#d4e5c8;
+  --gold:#8b6914;
+  --gold2:#b38c2a;
+  --gold3:#d4aa55;
+  --rust:#7a3020;
+  --text-main:#1a1a16;
+  --text-muted:#5a5a50;
+  --text-light:#8a8a78;
+  --border:#c8c0b0;
+  --border-light:#ddd8ce;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--text-main);
+  font-size:15px;
+  line-height:1.7;
+  min-height:100vh;
+}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--moss);
+  border-bottom:3px solid var(--gold2);
+  padding:0 2rem;
+  display:flex;align-items:center;gap:0;
+  overflow-x:auto;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  color:#fff;font-size:13px;font-weight:400;
+  letter-spacing:.05em;
+  white-space:nowrap;
+  padding:14px 24px 14px 0;
+  border-right:1px solid rgba(255,255,255,.2);
+  margin-right:16px;
+  flex-shrink:0;
+}
+.nav-links{display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto}
+.nav-links a{
+  color:rgba(255,255,255,.75);
+  text-decoration:none;
+  font-size:12px;font-weight:400;letter-spacing:.04em;
+  padding:10px 14px;
+  border-radius:4px;
+  white-space:nowrap;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.12)}
+
+/* HERO */
+.hero{
+  background:var(--moss);
+  color:#fff;
+  padding:6rem 2rem 5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(90,154,50,.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45,80,22,.6) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-inner{max-width:860px;margin:0 auto;position:relative}
+.hero-label{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.15em;
+  color:var(--sage2);text-transform:uppercase;
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-label::after{content:'';flex:1;height:1px;background:rgba(180,204,158,.35)}
+h1.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,6vw,4.5rem);
+  font-weight:600;line-height:1.08;
+  letter-spacing:-.01em;
+  margin-bottom:1rem;
+}
+h1.hero-title em{
+  font-style:italic;font-weight:400;
+  color:var(--sage2);
+}
+.hero-sub{
+  font-size:16px;color:rgba(255,255,255,.7);
+  max-width:540px;
+  margin-bottom:2.5rem;
+  line-height:1.65;
+}
+.hero-meta{
+  display:flex;gap:2rem;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:1.5rem;
+}
+.hero-stat{
+  display:flex;flex-direction:column;gap:3px;
+}
+.hero-stat .num{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:600;
+  color:var(--sage2);
+}
+.hero-stat .lbl{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+
+/* LAYOUT */
+.page{max-width:1100px;margin:0 auto;padding:0 2rem}
+section{padding:4rem 0}
+
+/* SECTION HEADINGS */
+.section-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-light);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:24px;height:1px;background:var(--border)}
+h2.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:600;
+  color:var(--moss);margin-bottom:1rem;
+  letter-spacing:-.01em;
+}
+h3.subsection{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:400;
+  color:var(--text-main);
+  margin:2rem 0 .75rem;
+  padding-left:1rem;
+  border-left:3px solid var(--sage);
+}
+
+/* INTRO */
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:2rem;
+}
+@media(max-width:680px){.intro-grid{grid-template-columns:1fr}}
+.intro-card{
+  background:var(--paper2);
+  border:1px solid var(--border-light);
+  border-radius:8px;
+  padding:1.5rem;
+}
+.intro-card h4{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--moss2);margin-bottom:.75rem;
+}
+.intro-card p{font-size:14px;color:var(--text-muted);line-height:1.65}
+
+.hyphal-badges{
+  display:flex;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:4px;
+  font-size:12px;font-weight:500;letter-spacing:.03em;
+}
+.badge-trimitic{background:#e5f0da;color:#2d5016;border:1px solid #a8c98a}
+.badge-monomitic{background:#fef3cd;color:#7a5010;border:1px solid #d4aa55}
+.badge-dimitic{background:#e8e4f0;color:#3d3070;border:1px solid #9b8ec4}
+.badge-dot{width:7px;height:7px;border-radius:50%}
+.badge-trimitic .badge-dot{background:#3d6e20}
+.badge-monomitic .badge-dot{background:#b38c2a}
+.badge-dimitic .badge-dot{background:#6b5bc4}
+
+/* COMPARISON TABLE */
+.table-wrap{overflow-x:auto;margin-top:2rem;border-radius:8px;border:1px solid var(--border)}
+table{
+  width:100%;border-collapse:collapse;
+  font-size:13px;min-width:700px;
+}
+thead{background:var(--moss);color:#fff}
+thead th{
+  padding:12px 16px;font-weight:500;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  text-align:left;white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid var(--border-light)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:var(--paper2)}
+tbody tr:hover{background:var(--sage3)}
+td{padding:11px 16px;vertical-align:middle}
+td:first-child{font-style:italic;font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--moss)}
+.stars{color:var(--gold2);font-size:13px;letter-spacing:1px}
+.stars .empty{color:var(--border)}
+.sys-pill{
+  display:inline-block;padding:3px 9px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:.05em;
+}
+.sys-tri{background:#e5f0da;color:#2d5016}
+.sys-mono{background:#fef3cd;color:#7a5010}
+.sys-di{background:#e8e4f0;color:#3d3070}
+.speed-fast{color:#2d5016;font-weight:500}
+.speed-vfast{color:#1a6610;font-weight:500}
+.speed-mod{color:var(--text-muted)}
+.speed-slow{color:var(--text-light)}
+
+/* STRAIN CARDS */
+.strains{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:1.5rem;
+  margin-top:2rem;
+}
+.strain-card{
+  background:#fff;
+  border:1px solid var(--border-light);
+  border-radius:10px;
+  overflow:hidden;
+  transition:box-shadow .2s,transform .2s;
+  cursor:default;
+}
+.strain-card:hover{
+  box-shadow:0 8px 32px rgba(45,80,22,.12);
+  transform:translateY(-2px);
+}
+.card-header{
+  padding:1.2rem 1.4rem 1rem;
+  border-bottom:1px solid var(--border-light);
+  position:relative;
+}
+.card-rank{
+  position:absolute;top:1rem;right:1.2rem;
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--text-light);
+}
+.card-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;font-weight:600;
+  font-style:italic;
+  color:var(--moss);
+  line-height:1.2;
+  margin-bottom:2px;
+}
+.card-common{font-size:12px;color:var(--text-muted)}
+.card-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.tag{
+  font-size:10px;padding:3px 8px;border-radius:3px;font-weight:500;letter-spacing:.04em;
+}
+.tag-tri{background:#e5f0da;color:#2d5016}
+.tag-mono{background:#fef3cd;color:#7a5010}
+.tag-di{background:#e8e4f0;color:#3d3070}
+.tag-wr{background:#fde8e8;color:#7a2020}
+.card-body{padding:1.2rem 1.4rem}
+.card-body .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 1rem;margin-bottom:1rem}
+.field{display:flex;flex-direction:column;gap:1px}
+.field-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light)}
+.field-val{font-size:13px;color:var(--text-main);font-weight:400}
+.card-divider{border:none;border-top:1px solid var(--border-light);margin:.75rem 0}
+.card-section-title{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--moss2);font-weight:500;margin-bottom:.5rem;
+}
+.card-apps{list-style:none;padding:0}
+.card-apps li{
+  font-size:12.5px;color:var(--text-muted);
+  padding:3px 0 3px 14px;
+  position:relative;
+  line-height:1.45;
+}
+.card-apps li::before{
+  content:'→';position:absolute;left:0;
+  color:var(--sage);font-size:11px;
+}
+.card-strength{
+  display:flex;align-items:center;gap:8px;margin-top:.75rem;
+}
+.strength-bar-wrap{flex:1;height:6px;background:var(--border-light);border-radius:3px;overflow:hidden}
+.strength-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--moss3),var(--sage))}
+.strength-label{font-size:11px;color:var(--text-muted);white-space:nowrap}
+
+/* GROWTH CONDITIONS */
+.conditions-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1rem;
+  margin-top:2rem;
+}
+.cond-item{
+  background:var(--paper2);
+  border:1px solid var(--border-light);
+  border-radius:8px;
+  padding:1.2rem;
+  display:flex;flex-direction:column;gap:.3rem;
+}
+.cond-icon{font-size:1.6rem;margin-bottom:.3rem}
+.cond-title{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light)}
+.cond-val{font-size:1.1rem;font-weight:500;color:var(--moss)}
+.cond-note{font-size:12px;color:var(--text-muted)}
+
+/* REFERENCES */
+.refs{margin-top:2rem}
+.ref-item{
+  border-left:3px solid var(--sage);
+  padding:.75rem 0 .75rem 1.2rem;
+  margin-bottom:1rem;
+}
+.ref-item.core{border-left-color:var(--moss)}
+.ref-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--text-light);
+  margin-bottom:2px;
+}
+.ref-title{font-size:13.5px;color:var(--text-main);font-style:italic;margin-bottom:2px}
+.ref-desc{font-size:12.5px;color:var(--text-muted)}
+.ref-link{
+  display:inline-block;margin-top:4px;
+  font-size:11.5px;color:var(--moss2);
+  text-decoration:none;font-weight:500;
+}
+.ref-link:hover{color:var(--moss);text-decoration:underline}
+
+/* FOOTER */
+footer{
+  background:var(--moss);color:rgba(255,255,255,.55);
+  padding:2.5rem 2rem;
+  font-size:12px;
+  text-align:center;
+}
+footer strong{color:rgba(255,255,255,.8)}
+
+/* DIVIDER */
+.rule{
+  border:none;border-top:1px solid var(--border);
+  margin:0;
+}
+
+/* PROSE */
+p.body{
+  font-size:15px;color:var(--text-muted);
+  line-height:1.75;max-width:720px;
+}
+p.body+p.body{margin-top:.75rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Mycelium Composites</div>
+  <div class="nav-links">
+    <a href="#intro">Introduction</a>
+    <a href="#strains">Strain Profiles</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#conditions">Growth Conditions</a>
+    <a href="#references">References</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Mycelium-Based Composites · Strain Reference Report</div>
+    <h1 class="hero-title">Fungal Strains for<br><em>Sustainable Materials</em></h1>
+    <p class="hero-sub">Detailed profiles of eight fungal species — covering growth conditions, textural properties, mechanical performance, and material applications — drawn from peer-reviewed MBC research.</p>
+    <div class="hero-meta">
+      <div class="hero-stat"><span class="num">8</span><span class="lbl">Species profiled</span></div>
+      <div class="hero-stat"><span class="num">5</span><span class="lbl">Core references</span></div>
+      <div class="hero-stat"><span class="num">3</span><span class="lbl">Hyphal systems</span></div>
+      <div class="hero-stat"><span class="num">2025</span><span class="lbl">Literature up to</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: INTRODUCTION -->
+<section id="intro">
+  <div class="section-label">Section 01</div>
+  <h2 class="section-title">Introduction</h2>
+  <p class="body">Mycelium-based composites (MBCs) are an emerging class of sustainable biomaterials produced by cultivating fungal mycelium on lignocellulosic agricultural waste substrates. The growing mycelium binds substrate particles through its hyphal network, forming a solid, lightweight material that can be shaped into virtually any form before heat-inactivation terminates growth.</p>
+  <p class="body">This report provides structured, scientifically grounded profiles for eight fungal species studied in MBC research, derived from peer-reviewed comparative studies and reviews published between 2019 and 2025.</p>
+
+  <h3 class="subsection">Hyphal System Classification</h3>
+  <p class="body">The mechanical performance of MBCs is strongly linked to the hyphal system architecture of the fungal species. This is the single most important structural predictor of composite strength.</p>
+
+  <div class="hyphal-badges">
+    <span class="badge badge-trimitic"><span class="badge-dot"></span>Trimitic — Generative + Skeletal + Binding hyphae → Superior strength</span>
+    <span class="badge badge-monomitic"><span class="badge-dot"></span>Monomitic — Generative hyphae only → Lower strength, better insulation</span>
+    <span class="badge badge-dimitic"><span class="badge-dot"></span>Dimitic — Generative + Skeletal or Binding → Intermediate</span>
+  </div>
+
+  <div class="intro-grid">
+    <div class="intro-card">
+      <h4>Post-Processing Effects</h4>
+      <p>Hot-pressing (100–200 °C, 5–50 MPa) can raise flexural modulus from ~10–20 MPa to 34–80+ MPa. Drying to &lt;10% moisture is essential for dimensional stability. Tanning improves water resistance for leather-like applications.</p>
+    </div>
+    <div class="intro-card">
+      <h4>Common Substrates</h4>
+      <p>All species thrive on agricultural and wood waste: straw, sawdust, hemp shives, corn husk, rice straw, coffee grounds, and cotton. Blended substrates often optimise colonisation speed and mechanical isotropy simultaneously.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SECTION 2: STRAIN PROFILES -->
+<section id="strains">
+  <div class="section-label">Section 02</div>
+  <h2 class="section-title">Strain Profiles</h2>
+  <p class="body">Eight species profiled in approximate order of mechanical performance, from highest binding strength to lowest. Each card summarises growth requirements, texture, applications, and strength tier.</p>
+
+  <div class="strains">
+
+    <!-- Ganoderma williamsianum -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#1</div>
+        <div class="card-name">Ganoderma williamsianum</div>
+        <div class="card-common">No common name</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–30 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–85%+</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">15–25 days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Sawdust, corn husk, rice straw</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">High-density mycelium with thick, hydrophobic hyphae and extremely low water absorption. First reported in MBC literature in 2022 (Aiduang et al.).</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>High-strength load-bearing construction panels</li>
+          <li>Dense structural composites and bricks</li>
+          <li>Durable packaging for heavy goods</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:100%"></div></div>
+          <span class="strength-label">Highest</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lentinus sajor-caju -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#2</div>
+        <div class="card-name">Lentinus sajor-caju</div>
+        <div class="card-common">Sajor-caju mushroom</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–30 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–85%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">14–25 days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Sawdust, corn husk, blends</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Very dense mycelial networks with a tough, compact structure. Strong surface layers with excellent homogeneous penetration through substrate volume.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>High-strength panels and structural boards</li>
+          <li>Industrial packaging requiring impact resistance</li>
+          <li>Durable construction products</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:96%"></div></div>
+          <span class="strength-label">Very high</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trametes versicolor -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#3</div>
+        <div class="card-name">Trametes versicolor</div>
+        <div class="card-common">Turkey Tail</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–30 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–90%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">7–21 days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Straw, sawdust, hemp, cotton</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Dense, fibrous network forming velvety or leathery surfaces under pressing. Among the fastest trimitic colonisers. Notable inherent fire resistance.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>Acoustic panels and sound-absorbing insulation</li>
+          <li>Fire-resistant building panels</li>
+          <li>Leather-like sheets (post-processing)</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:82%"></div></div>
+          <span class="strength-label">Strong</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ganoderma lucidum -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#4</div>
+        <div class="card-name">Ganoderma lucidum</div>
+        <div class="card-common">Reishi · Lingzhi</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–30 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">60–95%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">15–30+ days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Hardwood sawdust, straw</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Naturally hydrophobic; forms firm surface skins. Most extensively studied species (~25% of all MBC literature). Compressive strength 0.5–1.5 MPa.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>Bricks and high-density construction</li>
+          <li>Mycelium leather and fabrics</li>
+          <li>Commercial MBC products (Ecovative, etc.)</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:80%"></div></div>
+          <span class="strength-label">Excellent</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fomes fomentarius -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#5</div>
+        <div class="card-name">Fomes fomentarius</div>
+        <div class="card-common">Hoof Fungus · Tinder Fungus · Amadou</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">~25 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–85%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">20–35 days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Hemp shives, hardwood</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Very tough, woody, fibrous mycelium with high chitin content — mirrors the hard character of its fruiting body. Heat-pressing significantly boosts tensile strength.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>Load-bearing structural composites</li>
+          <li>Leather-like sheet materials (amadou felt)</li>
+          <li>Impact-resistant engineering composites</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:82%"></div></div>
+          <span class="strength-label">Superior</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daedaleopsis confragosa -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#6</div>
+        <div class="card-name">Daedaleopsis confragosa</div>
+        <div class="card-common">Blushing Bracket</div>
+        <div class="card-tags">
+          <span class="tag tag-tri">Trimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">~20–28 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–85%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">Moderate–slow</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Hardwood lignocellulosics</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Exceptional tensile strength — median ~6.51 MPa in mycelium film studies (Cristini et al., 2025). Less commonly studied but mechanically outstanding.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>High-tensile engineering panels</li>
+          <li>Structural composites demanding tensile performance</li>
+          <li>Specialist load-bearing applications</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Tensile</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:90%"></div></div>
+          <span class="strength-label">Exceptional</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pleurotus ostreatus -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#7</div>
+        <div class="card-name">Pleurotus ostreatus</div>
+        <div class="card-common">Oyster Mushroom</div>
+        <div class="card-tags">
+          <span class="tag tag-mono" style="background:#fef3cd;color:#7a5010;border:1px solid #d4aa55">Monomitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–28 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">75–90%</span></div>
+          <div class="field"><span class="field-label">Incubation</span><span class="field-val">10–18 days</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Straw, sawdust, coffee, hemp</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Softer, cottony texture; lower density. Lowest thermal conductivity of all common MBC species — ~0.032 W/(m·K) on wheat straw. Food-safe strain.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>Thermal &amp; acoustic insulation panels</li>
+          <li>Foam substitutes, lightweight packaging</li>
+          <li>Education and prototyping (ease of culture)</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Strength</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:38%;background:linear-gradient(90deg,#b38c2a,#d4aa55)"></div></div>
+          <span class="strength-label">Lower</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Irpex lacteus -->
+    <div class="strain-card">
+      <div class="card-header">
+        <div class="card-rank">#8</div>
+        <div class="card-name">Irpex lacteus</div>
+        <div class="card-common">Milk-white Toothed Polypore</div>
+        <div class="card-tags">
+          <span class="tag tag-di" style="background:#e8e4f0;color:#3d3070;border:1px solid #9b8ec4">Dimitic</span>
+          <span class="tag tag-wr">White-rot</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <div class="field"><span class="field-label">Temperature</span><span class="field-val">25–30 °C</span></div>
+          <div class="field"><span class="field-label">Humidity</span><span class="field-val">70–85%</span></div>
+          <div class="field"><span class="field-label">Growth rate</span><span class="field-val">8.0 mm/day (fastest)</span></div>
+          <div class="field"><span class="field-label">Substrate</span><span class="field-val">Wood pulp, ag. waste blends</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.55">Fastest radial growth of all species (8.0 mm/day, Cristini et al. 2025). High chitin but weaker tensile performance due to dimitic architecture. Young's modulus 5–50 MPa.</p>
+        <hr class="card-divider">
+        <div class="card-section-title">Applications</div>
+        <ul class="card-apps">
+          <li>Rapid inoculum production</li>
+          <li>General composites where speed &gt; strength</li>
+          <li>Insulation boards, lightweight packaging</li>
+        </ul>
+        <div class="card-strength">
+          <span class="strength-label">Speed</span>
+          <div class="strength-bar-wrap"><div class="strength-bar" style="width:100%;background:linear-gradient(90deg,#3d3070,#7b6fc4)"></div></div>
+          <span class="strength-label">Fastest</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SECTION 3: COMPARISON -->
+<section id="comparison">
+  <div class="section-label">Section 03</div>
+  <h2 class="section-title">Comparative Overview</h2>
+  <p class="body">Summary of all eight species across key performance dimensions. Strength ratings are qualitative assessments derived from comparative studies on equivalent substrates. ★ = Low · ★★★ = Moderate · ★★★★★ = Very high.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Hyphal system</th>
+          <th>Growth speed</th>
+          <th>Compressive</th>
+          <th>Tensile</th>
+          <th>Primary use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>G. williamsianum</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-mod">Moderate–fast</td>
+          <td><span class="stars">★★★★★</span></td>
+          <td><span class="stars">★★★★★</span></td>
+          <td>Structural composites</td>
+        </tr>
+        <tr>
+          <td>L. sajor-caju</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-mod">Moderate–fast</td>
+          <td><span class="stars">★★★★★</span></td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td>Structural / High-strength</td>
+        </tr>
+        <tr>
+          <td>T. versicolor</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-fast">Fast</td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td>Panels, acoustic, fire-resistant</td>
+        </tr>
+        <tr>
+          <td>G. lucidum</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-mod">Moderate</td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td>Bricks, packaging, leather</td>
+        </tr>
+        <tr>
+          <td>F. fomentarius</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-slow">Moderate–slow</td>
+          <td><span class="stars">★★★★<span class="empty">★</span></span></td>
+          <td><span class="stars">★★★★★</span></td>
+          <td>Load-bearing, leather</td>
+        </tr>
+        <tr>
+          <td>D. confragosa</td>
+          <td><span class="sys-pill sys-tri">Trimitic</span></td>
+          <td class="speed-slow">Moderate–slow</td>
+          <td><span class="stars">★★★<span class="empty">★★</span></span></td>
+          <td><span class="stars">★★★★★</span></td>
+          <td>Engineering panels</td>
+        </tr>
+        <tr>
+          <td>P. ostreatus</td>
+          <td><span class="sys-pill sys-mono">Monomitic</span></td>
+          <td class="speed-vfast">Very fast</td>
+          <td><span class="stars">★★<span class="empty">★★★</span></span></td>
+          <td><span class="stars">★★<span class="empty">★★★</span></span></td>
+          <td>Insulation, packaging</td>
+        </tr>
+        <tr>
+          <td>I. lacteus</td>
+          <td><span class="sys-pill sys-di">Dimitic</span></td>
+          <td class="speed-vfast">Very fast</td>
+          <td><span class="stars">★★★<span class="empty">★★</span></span></td>
+          <td><span class="stars">★★<span class="empty">★★★</span></span></td>
+          <td>Rapid production, insulation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SECTION 4: GROWTH CONDITIONS -->
+<section id="conditions">
+  <div class="section-label">Section 04</div>
+  <h2 class="section-title">Standardised Growth Conditions</h2>
+  <p class="body">Across all species, the following incubation parameters are standard in MBC research. Deviations from these ranges generally slow colonisation and reduce composite homogeneity.</p>
+
+  <div class="conditions-grid">
+    <div class="cond-item">
+      <div class="cond-icon">🌡</div>
+      <div class="cond-title">Temperature</div>
+      <div class="cond-val">25–30 °C</div>
+      <div class="cond-note">Most species have a broad tolerance; fruiting may require slight reduction</div>
+    </div>
+    <div class="cond-item">
+      <div class="cond-icon">💧</div>
+      <div class="cond-title">Relative humidity</div>
+      <div class="cond-val">70–90%</div>
+      <div class="cond-note">Ganoderma species tolerate slightly lower RH without loss of performance</div>
+    </div>
+    <div class="cond-item">
+      <div class="cond-icon">🌑</div>
+      <div class="cond-title">Light</div>
+      <div class="cond-val">Dark</div>
+      <div class="cond-note">All species prefer dark incubation; light inhibits mycelial extension in some strains</div>
+    </div>
+    <div class="cond-item">
+      <div class="cond-icon">💨</div>
+      <div class="cond-title">Aeration / CO₂</div>
+      <div class="cond-val">Controlled</div>
+      <div class="cond-note">Good gas exchange increases density and colonisation rate in T. versicolor particularly</div>
+    </div>
+    <div class="cond-item">
+      <div class="cond-icon">🌾</div>
+      <div class="cond-title">Substrate moisture</div>
+      <div class="cond-val">60–70%</div>
+      <div class="cond-note">At inoculation; final product dried to &lt;10% for maximum mechanical performance</div>
+    </div>
+    <div class="cond-item">
+      <div class="cond-icon">🔥</div>
+      <div class="cond-title">Inactivation</div>
+      <div class="cond-val">60–80 °C</div>
+      <div class="cond-note">Oven-drying or hot-pressing terminates growth; pressing simultaneously densifies the composite</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SECTION 5: REFERENCES -->
+<section id="references">
+  <div class="section-label">Section 05</div>
+  <h2 class="section-title">References</h2>
+  <p class="body">Peer-reviewed sources forming the scientific basis of this report. All core papers are open-access or available via ResearchGate.</p>
+
+  <h3 class="subsection">Core Papers</h3>
+  <div class="refs">
+    <div class="ref-item core">
+      <div class="ref-num">01 — Aiduang et al. (2022)</div>
+      <div class="ref-title">Mechanical, Physical, and Chemical Properties of Mycelium-Based Composites Produced from Various Lignocellulosic Residues and Fungal Species</div>
+      <div class="ref-desc">Key source for G. williamsianum, L. sajor-caju; compressive/flexural/tensile/impact comparisons across sawdust, corn husk, and rice straw substrates.</div>
+      <a class="ref-link" href="https://www.researchgate.net/publication/364745370" target="_blank">→ ResearchGate</a>
+    </div>
+    <div class="ref-item core">
+      <div class="ref-num">02 — Cristini et al. (2025)</div>
+      <div class="ref-title">A comparative study of mycelium films from nine fungal species for biocomposite applications — BioResources</div>
+      <div class="ref-desc">Key source for D. confragosa tensile strength (~6.51 MPa), I. lacteus radial growth (8.0 mm/day), F. fomentarius properties, and chitin content vs. tensile properties.</div>
+      <a class="ref-link" href="https://bioresources.cnr.ncsu.edu/resources/a-comparative-study-of-mycelium-films-from-nine-fungal-species-for-biocomposite-applications/" target="_blank">→ BioResources Open Access</a>
+    </div>
+    <div class="ref-item core">
+      <div class="ref-num">03 — Houette et al. (2022)</div>
+      <div class="ref-title">Growth and Mechanical Characterization of Mycelium-Based Composites — Biomimetics</div>
+      <div class="ref-desc">Strong comparison of T. versicolor (trimitic) vs. P. ostreatus (monomitic); compressive strength and pressing/post-processing data.</div>
+      <a class="ref-link" href="https://www.mdpi.com/2313-7673/7/3/103" target="_blank">→ MDPI Open Access</a>
+    </div>
+    <div class="ref-item core">
+      <div class="ref-num">04 — Appels et al. (2019)</div>
+      <div class="ref-title">Fabrication factors influencing mechanical, moisture and water-related properties of mycelium-based composites — Composites Part A</div>
+      <div class="ref-desc">Key reference for hot/cold pressing effects, density optimisation, and moisture management in Trametes and Pleurotus composites.</div>
+    </div>
+    <div class="ref-item core">
+      <div class="ref-num">05 — Yang et al. (2021)</div>
+      <div class="ref-title">Material Function of Mycelium-Based Bio-Composite — Frontiers in Materials</div>
+      <div class="ref-desc">Overview of species usage frequency, trimitic/monomitic hyphal system advantages, G. lucidum prevalence (~25% of MBC studies).</div>
+      <a class="ref-link" href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2021.737377/full" target="_blank">→ Frontiers Open Access</a>
+    </div>
+  </div>
+
+  <h3 class="subsection">Supporting Sources</h3>
+  <div class="refs">
+    <div class="ref-item">
+      <div class="ref-num">06 — Schmidt et al. (2023)</div>
+      <div class="ref-desc">Mechanical, physical and thermal properties of composite materials produced with the basidiomycete Fomes fomentarius. Focus on construction potential and thermal performance.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">07 — Jones et al. (2020)</div>
+      <div class="ref-desc">Related works on Trametes and Ganoderma in engineering composites. Structural property benchmarking across substrates.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">08 — Camilleri et al. (2025)</div>
+      <div class="ref-desc">Updated comprehensive review of mycelium-based composites — species, substrates, post-processing, and applications.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">09 — Sydor et al. (2022)</div>
+      <div class="ref-desc">Review of fungi used in MBCs, including species lists and hyphal system classification for composite performance prediction.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-num">10 — Schoder et al. (2024)</div>
+      <div class="ref-desc">Environmental effects on mycelium growth rates — temperature, humidity, and CO₂ effects on colonisation dynamics across white-rot species.</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<footer>
+  <strong>Mycelium-Based Composites — Strain Reference Report</strong><br>
+  Compiled from peer-reviewed literature (2019–2025) · Profiles based on Aiduang, Cristini, Houette, Appels, Yang et al.
+</footer>
+
+</body>
+</html>

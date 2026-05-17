@@ -25,6 +25,8 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .hamburger.open .bar:nth-child(1){width:24px;transform:translateY(7.5px) rotate(45deg);}
 .hamburger.open .bar:nth-child(2){opacity:0;width:0;}
 .hamburger.open .bar:nth-child(3){width:24px;transform:translateY(-7.5px) rotate(-45deg);}
+.nav-report-btn{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);text-decoration:none;border:1px solid rgba(245,240,232,.3);padding:.6rem 1.2rem;position:relative;z-index:1;transition:all .3s;cursor:none;}
+.nav-report-btn:hover{border-color:var(--sage);color:var(--sage);background:rgba(122,158,106,.1);}
 
 /* FULLSCREEN MENU */
 .menu-overlay{position:fixed;inset:0;background:var(--myc);z-index:90;display:flex;align-items:center;padding:0 10vw;clip-path:circle(0% at calc(100% - 60px) 44px);transition:clip-path .8s cubic-bezier(.76,0,.24,1);pointer-events:none;}
@@ -243,6 +245,7 @@ footer{background:#0e0f09;padding:3rem 8vw;display:flex;justify-content:space-be
 <!-- ═══ NAV ═══ -->
 <nav>
   <div class="logo">Mycelium<span>Studio</span></div>
+  <a href="mycelium_report.html" class="nav-report-btn">Strain Reference Report</a>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
     <span class="bar"></span><span class="bar"></span><span class="bar"></span>
   </button>
