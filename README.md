@@ -211,7 +211,7 @@ Whether you're an investor, company, researcher, or partner interested in sustai
 
 
 
----## 🌍 Sustainable Materials Resources
+## 🌍 Sustainable Materials Resources
 
 ### References & Further Reading
 - Stamets, P. (2005). *Mycelium Running: How Mushrooms Can Help Heal the World*
