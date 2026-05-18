@@ -193,7 +193,7 @@ Transform waste materials into sustainable, biodegradable, commercially viable a
 Whether you're an investor, company, researcher, or partner interested in sustainable materials innovation — let's start a conversation.
 
 - 📧 **Email:** abhijeet.chowdhury97@icloud.com
-- 🔗 **Website:** [Mycelium Studio Portfolio]
+- 🔗 **Website:** https://abhijeet-chowdhury-mycelium-studio.netlify.app/
 - 💼 **Research Focus:** Mycelium composites, waste valorisation, sustainable manufacturing
 
 ---
