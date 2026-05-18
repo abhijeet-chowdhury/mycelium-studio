@@ -209,16 +209,9 @@ Whether you're an investor, company, researcher, or partner interested in sustai
 
 ---
 
-## 📄 License & Attribution
 
-This portfolio represents original research by Abhijeet Chowdhury conducted at university laboratories under the supervision of Prof. Ingo Johannsen.
 
-**© 2025 Mycelium Studio — All rights reserved**  
-*Built for a sustainable future*
-
----
-
-## 🌍 Sustainable Materials Resources
+---## 🌍 Sustainable Materials Resources
 
 ### References & Further Reading
 - Stamets, P. (2005). *Mycelium Running: How Mushrooms Can Help Heal the World*
