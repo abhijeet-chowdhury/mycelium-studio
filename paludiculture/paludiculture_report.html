@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paludiculture & Mycelium-Based Composites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--bg2:#131920;--bg3:#1a2430;--bg4:#1f2d3d;
+  --surface:#243040;--surface2:#2c3a4e;
+  --border:#2e3e52;--border2:#3a4f68;
+  --water:#1a6b8a;--water2:#2490b5;--water3:#4ab8d8;--water4:#8fd8ee;--water5:#c4ecf7;
+  --teal:#0e7c6b;--teal2:#12a88f;--teal3:#3ecfb5;
+  --amber:#8a5e10;--amber2:#c08020;--amber3:#e8aa45;
+  --text:#e8edf2;--text2:#9ab0c4;--text3:#5d7a94;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.75;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;overflow-x:auto;}
+.nav-brand{font-family:'Cormorant Garamond',serif;color:var(--water3);font-size:14px;white-space:nowrap;padding:14px 20px 14px 0;border-right:1px solid var(--border);margin-right:16px;flex-shrink:0;}
+.nav-links{display:flex;gap:2px;flex-wrap:nowrap;overflow-x:auto}
+.nav-links a{color:var(--text3);text-decoration:none;font-size:12px;letter-spacing:.05em;padding:10px 14px;border-radius:4px;white-space:nowrap;transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--water3);background:rgba(36,144,181,.08)}
+.hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:5.5rem 2rem 4.5rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 90% 30%,rgba(26,107,138,.22) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 5% 90%,rgba(14,124,107,.12) 0%,transparent 55%);pointer-events:none;}
+.hero-inner{max-width:820px;margin:0 auto;position:relative}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--water3);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::after{content:'';flex:1;height:1px;background:rgba(74,184,216,.2)}
+h1.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:600;line-height:1.06;letter-spacing:-.015em;margin-bottom:1.2rem;color:var(--text);}
+h1.hero-title em{font-style:italic;font-weight:400;color:var(--water3);}
+.hero-sub{font-size:15px;color:var(--text2);max-width:560px;margin-bottom:2.5rem;line-height:1.7;}
+.hero-pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.hero-pill{padding:5px 14px;border-radius:20px;font-size:11.5px;font-weight:400;letter-spacing:.04em;background:rgba(36,144,181,.12);color:var(--water4);border:1px solid rgba(36,144,181,.25);}
+.hero-meta{display:flex;gap:2.5rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1.5rem;}
+.hero-stat{display:flex;flex-direction:column;gap:3px}
+.hero-stat .num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--water3);}
+.hero-stat .lbl{font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+.page{max-width:1080px;margin:0 auto;padding:0 2rem}
+section{padding:4rem 0}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem;display:flex;align-items:center;gap:8px;}
+.sec-label::before{content:'';width:20px;height:1px;background:var(--border2)}
+h2.sec-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--text);margin-bottom:1rem;letter-spacing:-.01em;}
+h3.sub-heading{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;font-style:italic;color:var(--water4);margin:2.5rem 0 .75rem;padding-left:1rem;border-left:2px solid var(--water);}
+p.body{font-size:14.5px;color:var(--text2);line-height:1.8;max-width:740px;}
+p.body+p.body{margin-top:.75rem}
+.principles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem;margin-top:2rem;}
+.principle-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.3rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .2s;}
+.principle-card:hover{border-color:var(--border2)}
+.pc-icon{font-size:1.4rem;margin-bottom:.2rem}
+.pc-title{font-size:13px;font-weight:500;color:var(--text);letter-spacing:.02em}
+.pc-body{font-size:12.5px;color:var(--text3);line-height:1.6}
+.flow{display:flex;flex-wrap:wrap;gap:0;margin:2rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.flow-step{flex:1;min-width:150px;padding:1.2rem 1rem;background:var(--bg3);border-right:1px solid var(--border);text-align:center;}
+.flow-step:last-child{border-right:none}
+.flow-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;margin-bottom:.3rem;}
+.flow-icon{font-size:1.5rem;margin-bottom:.4rem}
+.flow-name{font-size:12.5px;font-weight:500;color:var(--water4);margin-bottom:.2rem}
+.flow-desc{font-size:11.5px;color:var(--text3);line-height:1.5}
+.rule{border:none;border-top:1px solid var(--border);margin:0}
+.plant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;}
+.plant-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .2s,transform .2s;}
+.plant-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.plant-img-area{width:100%;height:200px;background:var(--bg4);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.plant-img-area img{width:100%;height:100%;object-fit:cover;display:block;}
+.plant-img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:.5rem;}
+.img-icon{font-size:2rem;opacity:.3}
+.img-species{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:.06em;text-align:center;padding:0 1.2rem;font-style:italic;}
+.img-hint{font-size:10px;color:var(--text3);opacity:.5;margin-top:2px;}
+.plant-rank{position:absolute;top:.7rem;left:.7rem;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);background:rgba(13,17,23,.85);padding:3px 8px;border-radius:4px;border:1px solid var(--border);}
+.plant-body{padding:1.3rem}
+.plant-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;font-style:italic;color:var(--water4);line-height:1.2;margin-bottom:2px;}
+.plant-common{font-size:12px;color:var(--text3);margin-bottom:.75rem}
+.plant-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.9rem}
+.ptag{font-size:10px;padding:3px 9px;border-radius:3px;font-weight:400;letter-spacing:.05em;}
+.ptag-wet{background:rgba(36,144,181,.12);color:var(--water4);border:1px solid rgba(36,144,181,.2)}
+.ptag-src{background:rgba(62,207,181,.1);color:var(--teal3);border:1px solid rgba(62,207,181,.2)}
+.ptag-mc{background:rgba(232,170,69,.1);color:var(--amber3);border:1px solid rgba(232,170,69,.2)}
+.ptag-eur{background:rgba(93,122,148,.15);color:var(--text2);border:1px solid rgba(93,122,148,.2)}
+.ptag-na{background:rgba(147,93,190,.12);color:#c4a0e4;border:1px solid rgba(147,93,190,.2)}
+.plant-desc{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:1rem}
+.plant-divider{border:none;border-top:1px solid var(--border);margin:.75rem 0}
+.detail-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:.4rem;}
+.detail-list{list-style:none;padding:0}
+.detail-list li{font-size:12.5px;color:var(--text2);padding:3px 0 3px 14px;position:relative;line-height:1.5;}
+.detail-list li::before{content:'--';position:absolute;left:0;color:var(--water);font-size:11px;}
+.consider-box{background:rgba(36,144,181,.06);border:1px solid rgba(36,144,181,.15);border-radius:6px;padding:.75rem 1rem;margin-top:.75rem;}
+.consider-box .label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--water3);font-weight:500;margin-bottom:.3rem;}
+.consider-box p{font-size:12px;color:var(--text3);line-height:1.55}
+.mbc-row{display:flex;align-items:center;gap:8px;margin-top:.9rem}
+.mbc-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.mbc-bar-wrap{flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.mbc-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--water),var(--teal3))}
+.mbc-val{font-size:11px;color:var(--text3);white-space:nowrap}
+.table-wrap{overflow-x:auto;margin-top:2rem;border-radius:8px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+thead{background:var(--bg4)}
+thead th{padding:12px 16px;font-weight:500;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;text-align:left;white-space:nowrap;color:var(--text3);border-bottom:1px solid var(--border);}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(36,144,181,.05)}
+td{padding:11px 16px;vertical-align:middle;font-size:13px;color:var(--text2)}
+td:first-child{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:var(--water4)}
+.dot-green{color:var(--teal3)}.dot-amber{color:var(--amber3)}.dot-blue{color:var(--water3)}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-top:2rem;}
+.tip-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.2rem;}
+.tip-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:.5rem;}
+.tip-title{font-size:13px;font-weight:500;color:var(--teal3);margin-bottom:.4rem}
+.tip-body{font-size:12.5px;color:var(--text3);line-height:1.6}
+.refs{margin-top:2rem}
+.ref-group-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.ref-item{padding:.8rem 0 .8rem 1.2rem;border-left:2px solid var(--water);margin-bottom:.9rem;}
+.ref-item.general{border-left-color:var(--border2)}
+.ref-code{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);margin-bottom:3px;}
+.ref-title{font-size:13.5px;color:var(--text);font-style:italic;margin-bottom:3px}
+.ref-desc{font-size:12px;color:var(--text3);line-height:1.55}
+.ref-link{display:inline-block;margin-top:4px;font-size:11.5px;color:var(--water3);text-decoration:none;font-weight:500;}
+.ref-link:hover{color:var(--water4);text-decoration:underline}
+footer{background:var(--bg2);color:var(--text3);padding:2.5rem 2rem;font-size:12px;text-align:center;border-top:1px solid var(--border);}
+footer strong{color:var(--text2)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Paludiculture Report</div>
+  <div class="nav-links">
+    <a href="#intro">Overview</a>
+    <a href="#principles">Principles</a>
+    <a href="#process">MBC Process</a>
+    <a href="#plants">Shrub Profiles</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#tips">Production Tips</a>
+    <a href="#references">References</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Paludiculture &amp; Mycelium-Based Composites</div>
+    <h1 class="hero-title">Wet Agriculture<br>for <em>Sustainable Materials</em></h1>
+    <p class="hero-sub">Cultivating wetland-adapted shrubs on rewetted peatlands to produce lignocellulosic biomass for mycelium-based composite (MBC) production — combining climate mitigation with circular bio-economy.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Peatland Rewetting</span>
+      <span class="hero-pill">Carbon Sequestration</span>
+      <span class="hero-pill">Lignocellulosic Substrates</span>
+      <span class="hero-pill">Biodegradable Composites</span>
+      <span class="hero-pill">Circular Bio-Economy</span>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-stat"><span class="num">4</span><span class="lbl">Shrub species</span></div>
+      <div class="hero-stat"><span class="num">5</span><span class="lbl">Key principles</span></div>
+      <div class="hero-stat"><span class="num">2–4 yr</span><span class="lbl">Coppice cycle</span></div>
+      <div class="hero-stat"><span class="num">EU+</span><span class="lbl">Pilot regions</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<section id="intro">
+  <div class="sec-label">Section 01</div>
+  <h2 class="sec-title">What is Paludiculture?</h2>
+  <p class="body">Paludiculture refers to wet agriculture or forestry practiced on peatlands — either naturally wet or actively rewetted peat soils. It involves cultivating plant species adapted to waterlogged conditions while keeping the peat wet year-round, which prevents peat oxidation, minimises CO2 emissions, and halts land subsidence caused by drainage-based farming.</p>
+  <p class="body">Unlike conventional drainage agriculture, paludiculture harvests only above-ground biomass. Below-ground roots and organic matter are left intact, contributing to peat preservation or formation. The harvested biomass — from reeds, willows, sedges, or shrubs — feeds into construction, insulation, bioenergy, and advanced materials like mycelium-based composites (MBCs).</p>
+  <p class="body">Paludiculture is currently being piloted and expanded across Germany, the Netherlands, and other European countries with significant drained peatland areas. It represents a practical land-use strategy that simultaneously delivers material production and critical ecosystem services.</p>
+</section>
+
+<hr class="rule">
+
+<section id="principles">
+  <div class="sec-label">Section 02</div>
+  <h2 class="sec-title">Key Principles &amp; Benefits</h2>
+  <p class="body">Paludiculture is built on five interconnected principles that distinguish it from conventional agriculture and make it compatible with EU climate and biodiversity targets.</p>
+  <div class="principles">
+    <div class="principle-card">
+      <div class="pc-icon">&#128167;</div>
+      <div class="pc-title">Peatland rewetting</div>
+      <div class="pc-body">Water tables are raised to near-surface levels year-round, halting peat oxidation — a major GHG source when peatlands are drained for agriculture.</div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-icon">&#127807;</div>
+      <div class="pc-title">Biomass production</div>
+      <div class="pc-body">Above-ground biomass is harvested periodically while below-ground material is preserved, contributing to soil carbon and peat formation over time.</div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-icon">&#128260;</div>
+      <div class="pc-title">Circular bio-economy</div>
+      <div class="pc-body">Harvested biomass is used for construction, insulation, fibres, bioenergy, bioplastics, and MBCs — fitting fully into circular material flows.</div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-icon">&#127807;</div>
+      <div class="pc-title">Ecosystem services</div>
+      <div class="pc-body">Rewetted peatlands support biodiversity, water purification, nutrient retention, and flood buffering — functions lost under drainage farming.</div>
+    </div>
+    <div class="principle-card">
+      <div class="pc-icon">&#9878;&#65039;</div>
+      <div class="pc-title">Sustainable land use</div>
+      <div class="pc-body">Offers a productive alternative to drainage-based agriculture on degraded peatlands, reducing land-use conflict and climate impact simultaneously.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="process">
+  <div class="sec-label">Section 03</div>
+  <h2 class="sec-title">From Paludiculture to MBC</h2>
+  <p class="body">Mycelium-based composites (MBCs) use fungal mycelium from species like <em>Pleurotus</em>, <em>Trametes</em>, or <em>Ganoderma</em> as a natural binder for lignocellulosic substrates. Paludiculture shrubs provide an ideal renewable, wetland-sourced feedstock for this process.</p>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-icon">&#128167;</div>
+      <div class="flow-name">Rewet peatland</div>
+      <div class="flow-desc">Raise water table; establish waterlogged conditions</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-icon">&#127807;</div>
+      <div class="flow-name">Plant &amp; cultivate</div>
+      <div class="flow-desc">Establish willow or other wetland shrubs on rewetted land</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-icon">&#129683;</div>
+      <div class="flow-name">Coppice harvest</div>
+      <div class="flow-desc">Harvest stems every 2-4 years; roots stay intact</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-icon">&#128297;</div>
+      <div class="flow-name">Substrate prep</div>
+      <div class="flow-desc">Chip, shred, and sterilise biomass for inoculation</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <div class="flow-icon">&#127812;</div>
+      <div class="flow-name">Mycelium growth</div>
+      <div class="flow-desc">Inoculate with fungal spawn; incubate 10-25 days</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">06</div>
+      <div class="flow-icon">&#129521;</div>
+      <div class="flow-name">Dry &amp; press</div>
+      <div class="flow-desc">Heat-inactivate; press or mould into final composite</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="plants">
+  <div class="sec-label">Section 04</div>
+  <h2 class="sec-title">Wetland Shrub Profiles</h2>
+  <p class="body">The following species are paludiculture-compatible shrubs with lignocellulosic biomass suitable as MBC substrates. Each profile covers ecology, paludiculture role, MBC suitability, and practical considerations. Image placeholders are included for each species.</p>
+
+  <div class="plant-grid">
+
+    <div class="plant-card">
+      <div class="plant-img-area">
+        <div class="plant-rank">Species 01</div>
+        <img src="paludiculture images/Salix viminalis : Shrub willows.jpg" alt="Salix viminalis - Shrub willows">
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Salix spp.</div>
+        <div class="plant-common">Willow &middot; Weide (German) &middot; Shrub Willows</div>
+        <div class="plant-tags">
+          <span class="ptag ptag-wet">Waterlogged</span>
+          <span class="ptag ptag-src">Short-rotation coppice</span>
+          <span class="ptag ptag-mc">MBC substrate</span>
+          <span class="ptag ptag-eur">Europe</span>
+        </div>
+        <p class="plant-desc">Fast-growing deciduous shrubs and small trees (e.g. <em>S. viminalis</em>, basket willow). Thrive in wet and rewetted peatland conditions. Widely used across European paludiculture pilot sites as a primary biomass crop in short-rotation coppice (SRC) systems, harvested every 2-4 years.</p>
+        <hr class="plant-divider">
+        <div class="detail-label">Paludiculture role</div>
+        <ul class="detail-list">
+          <li>Primary SRC biomass species; high above-ground yield per hectare</li>
+          <li>Planted as buffer strips along rewetted ditches and margins</li>
+          <li>Rapid regrowth after coppicing; low management input after establishment</li>
+          <li>Root systems stabilise wet soils and contribute to peat preservation</li>
+          <li>Nutrient uptake from waterlogged soils improves water quality</li>
+        </ul>
+        <hr class="plant-divider">
+        <div class="detail-label">MBC suitability</div>
+        <ul class="detail-list">
+          <li>Rich in cellulose, hemicellulose, and lignin -- ideal lignocellulosic substrate</li>
+          <li>Analogous to birch chips and wood sawdust used successfully with <em>Trametes</em> and <em>Pleurotus</em></li>
+          <li>Chips and shreds bind well under mycelial colonisation; yields strong, mouldable panels</li>
+          <li>Tunable particle size gives control over final composite density and porosity</li>
+        </ul>
+        <div class="consider-box">
+          <div class="label">Considerations</div>
+          <p>Bark content may affect colonisation uniformity. Blending with straw or other fibrous substrates often optimises the nutrient balance for mycelial penetration.</p>
+        </div>
+        <div class="mbc-row">
+          <span class="mbc-label">MBC potential</span>
+          <div class="mbc-bar-wrap"><div class="mbc-bar" style="width:95%"></div></div>
+          <span class="mbc-val">Excellent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img-area">
+        <div class="plant-rank">Species 02</div>
+        <img src="paludiculture images/Frangula alnus.jpg" alt="Frangula alnus - Alder Buckthorn">
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Frangula alnus</div>
+        <div class="plant-common">Alder Buckthorn &middot; Faulbaum (German)</div>
+        <div class="plant-tags">
+          <span class="ptag ptag-wet">Fen / peatland</span>
+          <span class="ptag ptag-mc">MBC substrate</span>
+          <span class="ptag ptag-eur">Europe</span>
+        </div>
+        <p class="plant-desc">A deciduous wetland shrub common in European fens, wet heathlands, and peatland margins. Produces woody stems with bark containing medicinally relevant compounds. Provides renewable biomass from rewetted sites with minimal management input and strong ecological value.</p>
+        <hr class="plant-divider">
+        <div class="detail-label">Paludiculture role</div>
+        <ul class="detail-list">
+          <li>Naturally colonises rewetted fen and peatland edges</li>
+          <li>Low-maintenance biomass from marginal wet areas unsuited to willows</li>
+          <li>Supports insect biodiversity and wetland habitat structure</li>
+          <li>Bark compounds have medicinal and raw material uses</li>
+        </ul>
+        <hr class="plant-divider">
+        <div class="detail-label">MBC suitability</div>
+        <ul class="detail-list">
+          <li>Woody bark and stems provide lignocellulosic fibre for substrate blends</li>
+          <li>Comparable to other woody shrubs used as MBC substrates</li>
+          <li>Suitable for panel and foam applications when chipped</li>
+          <li>Adds substrate diversity to multi-species blends</li>
+        </ul>
+        <div class="consider-box">
+          <div class="label">Considerations</div>
+          <p>Lower volume yield than willows. Fungal compatibility testing recommended before large-scale use. Best employed in blended substrate mixes.</p>
+        </div>
+        <div class="mbc-row">
+          <span class="mbc-label">MBC potential</span>
+          <div class="mbc-bar-wrap"><div class="mbc-bar" style="width:65%"></div></div>
+          <span class="mbc-val">Good</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img-area">
+        <div class="plant-rank">Species 03</div>
+        <img src="paludiculture images/Myrica gale.jpg" alt="Myrica gale - Bog Myrtle">
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Myrica gale</div>
+        <div class="plant-common">Bog Myrtle &middot; Sweet Gale &middot; Gagel (German)</div>
+        <div class="plant-tags">
+          <span class="ptag ptag-wet">Bog / wet heath</span>
+          <span class="ptag ptag-mc">Blend substrate</span>
+          <span class="ptag ptag-eur">Europe / N. America</span>
+        </div>
+        <p class="plant-desc">An aromatic deciduous shrub native to bogs and wet heathlands. Tolerates highly acidic, waterlogged peat. Leaves, catkins, and fruits contain waxy aromatic compounds with natural antimicrobial properties. A niche but ecologically valuable paludiculture species with specialty application potential in MBCs.</p>
+        <hr class="plant-divider">
+        <div class="detail-label">Paludiculture role</div>
+        <ul class="detail-list">
+          <li>Thrives in highly acidic, waterlogged peat conditions</li>
+          <li>Nitrogen-fixing root nodules enrich surrounding soil</li>
+          <li>Leaves and fruits used in food, medicine, and natural dyes</li>
+          <li>Ecological and habitat value on rewetted bog sites</li>
+        </ul>
+        <hr class="plant-divider">
+        <div class="detail-label">MBC suitability</div>
+        <ul class="detail-list">
+          <li>Stems and leaves provide lignocellulosic substrate material</li>
+          <li>Aromatic essential oils may confer antimicrobial properties during colonisation</li>
+          <li>Best used in blends rather than as a pure substrate</li>
+          <li>Potential for bioactive or scented specialty composite products</li>
+        </ul>
+        <div class="consider-box">
+          <div class="label">Considerations</div>
+          <p>Essential oils may inhibit some fungal species. Preliminary compatibility tests with target fungi are strongly advised before use at any scale.</p>
+        </div>
+        <div class="mbc-row">
+          <span class="mbc-label">MBC potential</span>
+          <div class="mbc-bar-wrap"><div class="mbc-bar" style="width:50%"></div></div>
+          <span class="mbc-val">Moderate (blends)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="plant-card">
+      <div class="plant-img-area">
+        <div class="plant-rank">Species 04</div>
+        <img src="paludiculture images/Cephalanthus occidentalis.jpg" alt="Cephalanthus occidentalis - Buttonbush">
+      </div>
+      <div class="plant-body">
+        <div class="plant-name">Cephalanthus occidentalis</div>
+        <div class="plant-common">Buttonbush &middot; Common Buttonbush</div>
+        <div class="plant-tags">
+          <span class="ptag ptag-wet">Flooded wetland</span>
+          <span class="ptag ptag-mc">MBC substrate</span>
+          <span class="ptag ptag-na">North America</span>
+        </div>
+        <p class="plant-desc">A multi-stemmed deciduous shrub native to North American wetlands, tolerating prolonged flooding and waterlogged soils. Produces distinctive spherical white flower heads. Valuable for wetland habitat in riparian and paludiculture contexts, and suitable as a regional biomass species for North American MBC supply chains.</p>
+        <hr class="plant-divider">
+        <div class="detail-label">Paludiculture role</div>
+        <ul class="detail-list">
+          <li>Tolerates sustained flooding; suitable for rewetted wetland systems</li>
+          <li>Fibrous root systems aid stabilisation of wet and riparian soils</li>
+          <li>High wildlife value: pollinators, waterfowl, and wetland birds</li>
+          <li>Potential for integrated riparian biomass and habitat systems</li>
+        </ul>
+        <hr class="plant-divider">
+        <div class="detail-label">MBC suitability</div>
+        <ul class="detail-list">
+          <li>Woody stems provide lignocellulosic substrate comparable to other shrubs</li>
+          <li>Suitable for structural composite applications when chipped</li>
+          <li>Extreme wetland tolerance offers reliability in fully flooded production systems</li>
+          <li>Regional availability makes it practical for North American operations</li>
+        </ul>
+        <div class="consider-box">
+          <div class="label">Considerations</div>
+          <p>Limited to North American contexts. Lower research base for MBC applications compared to willow -- further substrate trials needed before commercial adoption.</p>
+        </div>
+        <div class="mbc-row">
+          <span class="mbc-label">MBC potential</span>
+          <div class="mbc-bar-wrap"><div class="mbc-bar" style="width:70%"></div></div>
+          <span class="mbc-val">Good (regional)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="comparison">
+  <div class="sec-label">Section 05</div>
+  <h2 class="sec-title">Species Comparison</h2>
+  <p class="body">Side-by-side summary of the four profiled shrubs across key paludiculture and MBC dimensions. Ratings are qualitative assessments based on available literature and analogous lignocellulosic substrates.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Wetland tolerance</th>
+          <th>Biomass yield</th>
+          <th>Harvest cycle</th>
+          <th>MBC substrate quality</th>
+          <th>Best use in MBCs</th>
+          <th>Region</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Salix spp.</td>
+          <td><span class="dot-green">&#9679;</span> Very high</td>
+          <td><span class="dot-green">&#9679;</span> Very high</td>
+          <td>2-4 years</td>
+          <td><span class="dot-green">&#9679;</span> Excellent</td>
+          <td>Panels, packaging, insulation</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td>Frangula alnus</td>
+          <td><span class="dot-green">&#9679;</span> High</td>
+          <td><span class="dot-amber">&#9679;</span> Moderate</td>
+          <td>3-5 years</td>
+          <td><span class="dot-blue">&#9679;</span> Good (blended)</td>
+          <td>Blended substrate panels</td>
+          <td>Europe</td>
+        </tr>
+        <tr>
+          <td>Myrica gale</td>
+          <td><span class="dot-green">&#9679;</span> High (acidic)</td>
+          <td><span class="dot-amber">&#9679;</span> Low-moderate</td>
+          <td>3-6 years</td>
+          <td><span class="dot-amber">&#9679;</span> Moderate (blend only)</td>
+          <td>Specialty / bioactive blends</td>
+          <td>Europe / N. Am.</td>
+        </tr>
+        <tr>
+          <td>Cephalanthus occ.</td>
+          <td><span class="dot-green">&#9679;</span> Very high</td>
+          <td><span class="dot-blue">&#9679;</span> Moderate</td>
+          <td>3-5 years</td>
+          <td><span class="dot-blue">&#9679;</span> Good</td>
+          <td>Structural composites</td>
+          <td>North America</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="tips">
+  <div class="sec-label">Section 06</div>
+  <h2 class="sec-title">MBC Production Tips</h2>
+  <p class="body">Practical guidance for processing paludiculture shrub biomass into mycelium composite substrates and optimising final composite properties.</p>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01 / Substrate preparation</div>
+      <div class="tip-title">Chip and sterilise</div>
+      <div class="tip-body">Chip or shred harvested stems to the desired particle size. Sterilise by autoclaving or pasteurisation to eliminate competing microorganisms before inoculation.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02 / Fungal selection</div>
+      <div class="tip-title">Match fungi to substrate</div>
+      <div class="tip-body"><em>Pleurotus ostreatus</em> colonises woody substrates fast and tolerates varied feedstocks. <em>Trametes versicolor</em> gives stronger binding on hardwood chips. Test compatibility with novel substrates first.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03 / Substrate blending</div>
+      <div class="tip-title">Mix for performance</div>
+      <div class="tip-body">Blend woody shrub chips with straw, reed, or other paludiculture biomass to balance structural support (from wood) and nutrition (from fibrous material). Typical ratios: 50-70% woody, 30-50% fibrous.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04 / Incubation</div>
+      <div class="tip-title">Control the environment</div>
+      <div class="tip-body">Maintain 25-30 C, 70-85% RH, in dark conditions with controlled CO2 exchange. Colonisation typically takes 10-25 days depending on species and substrate density.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">05 / Post-processing</div>
+      <div class="tip-title">Press and dry</div>
+      <div class="tip-body">Inactivate growth by oven-drying at 60-80 C or hot-pressing. Hot-pressing densifies the composite and can raise flexural modulus substantially -- up to 34-80 MPa for trimitic species.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">06 / End of life</div>
+      <div class="tip-title">Close the loop</div>
+      <div class="tip-body">All MBCs from paludiculture substrates are fully biodegradable and compostable. End-of-life material can be composted and returned to the land, completing the circular material cycle.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="references">
+  <div class="sec-label">Section 07</div>
+  <h2 class="sec-title">References</h2>
+  <p class="body">Sources underpinning the scientific and applied content in this report. Paludiculture data draws on European research programmes; MBC properties draw on peer-reviewed composite literature.</p>
+
+  <div class="refs">
+    <div class="ref-group-label">Paludiculture</div>
+
+    <div class="ref-item">
+      <div class="ref-code">Wichtmann et al. (2016)</div>
+      <div class="ref-title">Paludiculture -- Productive Use of Wet Peatlands</div>
+      <div class="ref-desc">Foundational reference on paludiculture concepts, species selection, and biomass applications across European rewetted peatlands. Covers willows, reeds, sedges, and their potential.</div>
+      <a class="ref-link" href="https://www.schweizerbart.de/publications/detail/isbn/9783510652839" target="_blank">-- Schweizerbart Publisher</a>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">Tanneberger &amp; Wichtmann (eds., 2011)</div>
+      <div class="ref-title">Carbon Credits from Peatland Rewetting: Science, Policy, Implementation</div>
+      <div class="ref-desc">Policy and science context for peatland rewetting, GHG mitigation, and paludiculture as a climate strategy. Relevant for CO2 emission reduction claims and carbon accounting.</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">Geurts et al. (2019)</div>
+      <div class="ref-title">Paludiculture Pilots in The Netherlands and Germany</div>
+      <div class="ref-desc">Pilot study results for wetland crop systems including willow SRC and other shrubs on rewetted peat; biomass yield data and ecosystem service assessments.</div>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">LIFE Peat Restore (EU, 2016-2022)</div>
+      <div class="ref-title">LIFE Peat Restore Project -- Peatland Rewetting &amp; Paludiculture</div>
+      <div class="ref-desc">EU-funded programme demonstrating rewetting and paludiculture across five European countries. Key reference for policy context and Salix and other shrub applications.</div>
+      <a class="ref-link" href="https://peat-restore.eu" target="_blank">-- peat-restore.eu</a>
+    </div>
+
+    <div class="ref-group-label" style="margin-top:2rem">Mycelium-Based Composites</div>
+
+    <div class="ref-item">
+      <div class="ref-code">Aiduang et al. (2022)</div>
+      <div class="ref-title">Mechanical, Physical, and Chemical Properties of Mycelium-Based Composites from Various Lignocellulosic Residues and Fungal Species</div>
+      <div class="ref-desc">Comparative MBC study across substrates (sawdust, corn husk, rice straw) and species. Directly relevant to willow chip substrate performance projections.</div>
+      <a class="ref-link" href="https://www.researchgate.net/publication/364745370" target="_blank">-- ResearchGate</a>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">Houette et al. (2022)</div>
+      <div class="ref-title">Growth and Mechanical Characterization of Mycelium-Based Composites -- Biomimetics</div>
+      <div class="ref-desc">Trametes versicolor vs. Pleurotus ostreatus on lignocellulosic substrates; pressing effects and strength data applicable to shrub-chip substrates.</div>
+      <a class="ref-link" href="https://www.mdpi.com/2313-7673/7/3/103" target="_blank">-- MDPI Open Access</a>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">Yang et al. (2021)</div>
+      <div class="ref-title">Material Function of Mycelium-Based Bio-Composite -- Frontiers in Materials</div>
+      <div class="ref-desc">Overview of species selection, substrate types, and applications in MBCs. Provides context for matching fungal species to paludiculture-derived substrates.</div>
+      <a class="ref-link" href="https://www.frontiersin.org/journals/materials/articles/10.3389/fmats.2021.737377/full" target="_blank">-- Frontiers Open Access</a>
+    </div>
+
+    <div class="ref-item">
+      <div class="ref-code">Appels et al. (2019)</div>
+      <div class="ref-title">Fabrication factors influencing mechanical, moisture and water-related properties of mycelium-based composites -- Composites Part A</div>
+      <div class="ref-desc">Key reference for substrate processing (chipping, sterilisation, moisture content), pressing, and drying effects applicable to any lignocellulosic feedstock including shrub biomass.</div>
+    </div>
+
+    <div class="ref-group-label" style="margin-top:2rem">Species Ecology</div>
+
+    <div class="ref-item general">
+      <div class="ref-code">Flora Europaea / BSBI</div>
+      <div class="ref-title">Distribution and ecology of Frangula alnus, Myrica gale, and Salix spp.</div>
+      <div class="ref-desc">Standard European botanical references for wetland shrub ecology, distribution, and habitat requirements. Basis for wetland tolerance and paludiculture compatibility notes.</div>
+    </div>
+
+    <div class="ref-item general">
+      <div class="ref-code">USDA Plants Database</div>
+      <div class="ref-title">Cephalanthus occidentalis -- ecology and distribution</div>
+      <div class="ref-desc">Reference for buttonbush wetland tolerance, North American range, and ecological role in flooded systems.</div>
+      <a class="ref-link" href="https://plants.usda.gov" target="_blank">-- plants.usda.gov</a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <strong>Paludiculture &amp; Mycelium-Based Composites -- Wetland Shrub Reference Report</strong><br>
+  Compiled from paludiculture literature and peer-reviewed MBC research (2011-2025)
+</footer>
+
+</body>
+</html>
